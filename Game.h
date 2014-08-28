@@ -12,10 +12,12 @@ class Game {
 	private:
 		//
 		bool init();
+		void event(SDL_Event* e);
 		void update();
 		void draw();
 		void cleanUp();
 		//
 		SDL_Window* window;
+		SDL_Event ev;
 		bool running;
 };

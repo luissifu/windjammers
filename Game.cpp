@@ -7,9 +7,9 @@ int Game::execute() {
 		return -1;
 
 	//TODO
-	running = false;
+	running = true;
 
-	int ticks = 0;
+	int ticks = SDL_GetTicks();
 	int loops;
 	int fps = 0;
 	std::string title = "Windjammers";
@@ -17,8 +17,9 @@ int Game::execute() {
 	while(running)
 	{
 		loops = 0;
-		while (loops < MAX_SKIP)
+		while (SDL_GetTicks() > ticks && loops < MAX_SKIP)
 		{
+			event(&ev);
 			update();
 
 			ticks += SKIP_TICKS;
