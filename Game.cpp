@@ -12,6 +12,7 @@ int Game::execute() {
 	int ticks = SDL_GetTicks();
 	int loops;
 	int fps = 0;
+
 	std::string title = "Windjammers";
 
 	while(running)

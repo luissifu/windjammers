@@ -7,8 +7,8 @@ bool Game::init() {
 		"Windjammers",
 		SDL_WINDOWPOS_UNDEFINED,
 		SDL_WINDOWPOS_UNDEFINED,
-		640,
-		480,
+		DEFAULT_WIDTH,
+		DEFAULT_HEIGHT,
 		SDL_WINDOW_OPENGL
 	);
 
