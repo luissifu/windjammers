@@ -1,6 +1,23 @@
 #pragma once
 #include <string>
 
+struct polygon {
+	short a;
+	short b;
+	short c;
+};
+
+struct vertex {
+	float x;
+	float y;
+	float z;
+};
+
+struct coord {
+	float u;
+	float v;
+};
+
 class Mesh {
 	public:
 		Mesh();
@@ -15,11 +32,17 @@ class Mesh {
 		void setPolygonsQty(int qty);
 		void setVerticesQty(int qty);
 		void setCoordsQty(int qty);
+		//
+		void addPolygon(polygon p);
+		void addVertex(vertex v);
+		void addCoord(coord c);
 	private:
+		std::string name;
+		std::string fileName;
 		int polygons;
 		int vertices;
 		int coords;
-		std::vector<polygon> polygons;
-		std::vector<vertex> vertices;
-		std::vector<coord> coords;
+		std::vector<polygon> polygon_list;
+		std::vector<vertex> vertex_list;
+		std::vector<coord> coord_list;
 };

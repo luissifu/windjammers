@@ -16,7 +16,7 @@ Loader::Loader() {}
 Mesh Loader::getMesh(std::string filename) {
 	for (int i = 0; i < mesh_list.size(); i++)
 	{
-		if (mesh_list[i].getFileName() == filename)
+		if (mesh_list[i].getFileName().compare(filename) == 0)
 		{
 			return mesh_list[i];
 		}
@@ -24,8 +24,9 @@ Mesh Loader::getMesh(std::string filename) {
 
 	Mesh new_mesh;
 
-	if (load3ds(new_mesh, filename))
+	if (loadMesh(new_mesh, filename))
 	{
+		mesh_list[i].push_back(new_mesh);
 		return new_mesh;
 	}
 	else //panic!
@@ -34,7 +35,7 @@ Mesh Loader::getMesh(std::string filename) {
 	}
 }
 
-bool Loader::load3ds(Mesh& mesh, std::string filename) {
+bool Loader::loadMesh(Mesh& mesh, std::string filename) {
 	int i;
 	std::ifstream file;
 	file.open(filename.c_str(), std::ios::binary);
@@ -86,7 +87,7 @@ bool Loader::load3ds(Mesh& mesh, std::string filename) {
 			case 3DS_VERTICES_LIST:
 			{
 				file >> qty;
-				mesh.setVertices(qty);
+				mesh.setVerticesQty(qty);
 
 				for (i = 0; i < qty; i++)
 				{
@@ -105,7 +106,7 @@ bool Loader::load3ds(Mesh& mesh, std::string filename) {
 			case 3DS_FACES_DESCRIPTION:
 			{
 				file >> qty;
-				mesh.setPolygons(qty);
+				mesh.setPolygonsQty(qty);
 				
 				for (i = 0; i < qty; i++)
 				{
@@ -125,7 +126,7 @@ bool Loader::load3ds(Mesh& mesh, std::string filename) {
 			case 3DS_MAPPING_COORDINATES_LIST:
 			{
 				file >> qty;
-				mesh.setCoords(qty);
+				mesh.setCoordsQty(qty);
 
 				for (i = 0; i < qty; i++)
 				{
