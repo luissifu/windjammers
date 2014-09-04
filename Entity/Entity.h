@@ -14,11 +14,11 @@ const enum EntityType {
 class Entity {
 	public:
 		EntityType type;
-		bool addComponent(Component* c);
+		bool addComponent(std::shared_ptr<Component> c);
 		int hasComponent(ComponentType type);
-		Component* getComponent(int index);
+		std::shared_ptr<Component> getComponent(int index);
 		Entity();
 	private:
 		int compNum;
-		std::vector<Component*> components;
+		std::vector<std::shared_ptr<Component>> components;
 };

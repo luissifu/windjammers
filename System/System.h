@@ -13,6 +13,6 @@ const enum SystemType {
 class System {
 	public:
 		SystemType type;
-		virtual void update(const std::vector<Entity*>& entities);
+		virtual void update(const std::vector<std::shared_ptr<Entity>>& entities);
 		System();
 };

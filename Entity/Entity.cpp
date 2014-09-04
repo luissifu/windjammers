@@ -5,7 +5,7 @@ Entity::Entity() {
 	compNum = 0;
 }
 
-bool Entity::addComponent(Component* c) {
+bool Entity::addComponent(std::shared_ptr<Component> c) {
 	if (compNum == MAX_COMPONENTS)
 	{
 		return false;
@@ -17,7 +17,7 @@ bool Entity::addComponent(Component* c) {
 	return true;
 }
 
-Component* Entity::getComponent(int index) {
+std::shared_ptr<Component> Entity::getComponent(int index) {
 	return components[index];
 }
 
