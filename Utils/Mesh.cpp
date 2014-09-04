@@ -25,12 +25,12 @@ int getCoordsQty() {
 	return coords;
 }
 
-void setFileName(std::string name) {
-	this->fileName = fileName;
+void setFileName(std::string fn) {
+	fileName = fn;
 }
 
-void setName(std::string name) {
-	this->name = name;
+void setName(std::string n) {
+	name = n;
 }
 
 void setPolygonsQty(int qty) {

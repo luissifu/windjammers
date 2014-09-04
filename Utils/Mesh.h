@@ -27,8 +27,8 @@ class Mesh {
 		int getVerticesQty();
 		int getCoordsQty();
 		//
-		void setFileName(std::string name);
-		void setName(std::string name);
+		void setFileName(std::string fn);
+		void setName(std::string n);
 		void setPolygonsQty(int qty);
 		void setVerticesQty(int qty);
 		void setCoordsQty(int qty);

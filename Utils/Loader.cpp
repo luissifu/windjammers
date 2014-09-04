@@ -1,16 +1,5 @@
 #include "Loader.h"
 
-const enum 3ds_data_names {
-	3DS_UNKNOWN = 					0x0000,
-	3DS_MAIN_CHUNK = 				0x4D4D,
-	3DS_EDITOR_CHUNK = 				0x3D3D,
-	3DS_OBJECT_BLOCK = 				0x4000,
-	3DS_TRIANGULAR_MESH = 			0x4100,
-	3DS_VERTICES_LIST = 			0x4110,
-	3DS_FACES_DESCRIPTION = 		0x4120,
-	3DS_MAPPING_COORDINATES_LIST = 	0x4140
-};
-
 Loader::Loader() {}
 
 Mesh Loader::getMesh(std::string filename) {
@@ -23,7 +12,7 @@ Mesh Loader::getMesh(std::string filename) {
 	}
 
 	Mesh new_mesh;
-
+	
 	if (loadMesh(new_mesh, filename))
 	{
 		mesh_list[i].push_back(new_mesh);
@@ -58,13 +47,13 @@ bool Loader::loadMesh(Mesh& mesh, std::string filename) {
 
 		switch(chunkId)
 		{
-			case 3DS_MAIN_CHUNK:
+			case M3DS_MAIN_CHUNK:
 			break;
 
-			case 3DS_EDITOR_CHUNK:
+			case M3DS_EDITOR_CHUNK:
 			break;
 
-			case 3DS_OBJECT_BLOCK:
+			case M3DS_OBJECT_BLOCK:
 			{
 				char[20] name;
 				i = 0;
@@ -81,10 +70,10 @@ bool Loader::loadMesh(Mesh& mesh, std::string filename) {
 			}
 			break;
 
-			case 3DS_TRIANGULAR_MESH:
+			case M3DS_TRIANGULAR_MESH:
 			break;
 
-			case 3DS_VERTICES_LIST:
+			case M3DS_VERTICES_LIST:
 			{
 				file >> qty;
 				mesh.setVerticesQty(qty);
@@ -103,7 +92,7 @@ bool Loader::loadMesh(Mesh& mesh, std::string filename) {
 			}
 			break;
 
-			case 3DS_FACES_DESCRIPTION:
+			case M3DS_FACES_DESCRIPTION:
 			{
 				file >> qty;
 				mesh.setPolygonsQty(qty);
@@ -123,7 +112,7 @@ bool Loader::loadMesh(Mesh& mesh, std::string filename) {
 			}
 			break;
 
-			case 3DS_MAPPING_COORDINATES_LIST:
+			case M3DS_MAPPING_COORDINATES_LIST:
 			{
 				file >> qty;
 				mesh.setCoordsQty(qty);
