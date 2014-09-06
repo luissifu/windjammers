@@ -15,7 +15,7 @@ Mesh Loader::getMesh(std::string filename) {
 	
 	if (loadMesh(new_mesh, filename))
 	{
-		mesh_list[i].push_back(new_mesh);
+		mesh_list.push_back(new_mesh);
 		return new_mesh;
 	}
 	else //panic!
@@ -55,7 +55,7 @@ bool Loader::loadMesh(Mesh& mesh, std::string filename) {
 
 			case M3DS_OBJECT_BLOCK:
 			{
-				char[20] name;
+				char name[20];
 				i = 0;
 
 				do
@@ -136,5 +136,5 @@ bool Loader::loadMesh(Mesh& mesh, std::string filename) {
 	}
 
 	file.close();
-	return mesh;
+	return true;
 }

@@ -21,7 +21,7 @@ const unsigned short M3DS_MAPPING_COORDINATES_LIST = 0x4140;
 class Loader {
 	public:
 		Loader();
-		void getMesh(std::string filename);
+		Mesh getMesh(std::string filename);
 	private:
 		bool loadMesh(Mesh& mesh, std::string filename);
 		std::vector<Mesh> mesh_list;

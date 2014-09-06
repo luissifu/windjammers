@@ -1,8 +1,8 @@
 #pragma once
 #include <vector>
-#include "../Component/Components.h"
-
-const int MAX_COMPONENTS = 10;
+#include <memory>
+#include "../Component/Component.h"
+#include "../Constants.h"
 
 const enum EntityType {
 	ENTITY_TYPE_NONE = 0,

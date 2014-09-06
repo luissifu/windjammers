@@ -1,7 +1,7 @@
 #pragma once
 #include <SDL.h>
 #include <string>
-
+#include "Utils/Loader.h"
 #include "Constants.h"
 
 class Game {
@@ -19,5 +19,6 @@ class Game {
 		//
 		SDL_Window* window;
 		SDL_Event ev;
+		Loader loader;
 		bool running;
 };

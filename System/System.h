@@ -1,4 +1,5 @@
 #pragma once
+#include <memory>
 #include "../Entity/Entity.h"
 
 const enum SystemType {

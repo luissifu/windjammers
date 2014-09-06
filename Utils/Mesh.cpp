@@ -5,54 +5,54 @@ Mesh::Mesh() {
 	name = fileName = "";
 }
 
-std::string getFileName() {
+std::string Mesh::getFileName() {
 	return fileName;
 }
 
-std::string getName() {
+std::string Mesh::getName() {
 	return name;
 }
 
-int getPolygonsQty() {
+int Mesh::getPolygonsQty() {
 	return polygons;
 }
 
-int getVerticesQty() {
+int Mesh::getVerticesQty() {
 	return vertices;
 }
 
-int getCoordsQty() {
+int Mesh::getCoordsQty() {
 	return coords;
 }
 
-void setFileName(std::string fn) {
+void Mesh::setFileName(std::string fn) {
 	fileName = fn;
 }
 
-void setName(std::string n) {
+void Mesh::setName(std::string n) {
 	name = n;
 }
 
-void setPolygonsQty(int qty) {
+void Mesh::setPolygonsQty(int qty) {
 	polygons = qty;
 }
 
-void setVerticesQty(int qty) {
+void Mesh::setVerticesQty(int qty) {
 	vertices = qty;
 }
 
-void setCoordsQty(int qty) {
+void Mesh::setCoordsQty(int qty) {
 	coords = qty;
 }
 
-void addPolygon(polygon p) {
+void Mesh::addPolygon(polygon p) {
 	polygon_list.push_back(p);
 }
 
-void addVertex(vertex v) {
+void Mesh::addVertex(vertex v) {
 	vertex_list.push_back(v);
 }
 
-void addCoord(coord c) {
+void Mesh::addCoord(coord c) {
 	coord_list.push_back(c);
 }
