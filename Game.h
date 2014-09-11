@@ -1,7 +1,7 @@
 #pragma once
 #include <SDL.h>
 #include <string>
-#include "Utils/Loader.h"
+#include "Utils/Mesh/Loader.h"
 #include "Constants.h"
 
 class Game {

@@ -11,7 +11,7 @@ OctNode::OctNode(Region r) {
 	region = r;
 }
 
-void OctNode::insert(Node n) {
+void OctNode::insert(SceneNode n) {
 	if (!leaf)
 	{
 		if (dataNum < MAX_DATA)
@@ -38,7 +38,7 @@ void OctNode::insert(Node n) {
 	}
 }
 
-void add(Node n) {
+void add(SceneNode n) {
 	for (int i = 0; i < MAX_CHILDREN; i++)
 	{
 		if (children[i]->inside(n.x, n.y, n.z))

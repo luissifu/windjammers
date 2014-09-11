@@ -5,7 +5,7 @@ OctTree::OctTree() {
 	root = std::make_shared<OctNode>();
 }
 
-void OctTree::insert(Node n) {
+void OctTree::insert(SceneNode n) {
 	root->insert(n);
 }
 

@@ -5,7 +5,7 @@
 class OctTree {
 	public:
 		OctTree();
-		void insert(Node n);
+		void insert(SceneNode n);
 		int getSize();
 	private:
 		std::shared_prt<OctNode> root;

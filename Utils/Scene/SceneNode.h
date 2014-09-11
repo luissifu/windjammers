@@ -2,10 +2,11 @@
 #include "Loader.h"
 #include "Mesh.h"
 
-class Node {
+class SceneNode {
 	public:
-		Node();
+		SceneNode();
 		void addMesh(Mesh m);
+		Mesh getMesh();
 		void setPosition(int x, int y, int z);
 		void setX(float x);
 		void setY(float y);

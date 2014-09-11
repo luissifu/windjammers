@@ -37,6 +37,10 @@ class Mesh {
 		void addPolygon(polygon p);
 		void addVertex(vertex v);
 		void addCoord(coord c);
+		//
+		polygon getPolygon(int index);
+		vertex getVertex(int index);
+		coord getCoord(int index);
 	private:
 		std::string name;
 		std::string fileName;
