@@ -15,8 +15,8 @@ Region::Region(float x, float y, float z, float width, float height, float depth
 }
 
 std::vector<Region> Region::split() {
-	std::std::vector<Region> regions;
-	Point p.getMidPoint();
+	std::vector<Region> regions;
+	point p = getMidPoint();
 
 	regions.push_back( Region(     x,     y,     z, width/2, height/2, depth/2) );
 	regions.push_back( Region(     x,     y, p.z+z, width/2, height/2, depth/2) );
@@ -30,16 +30,16 @@ std::vector<Region> Region::split() {
 	return regions;
 }
 
-void Region::inside(float x, float y, float z) {
+bool Region::inside(float x, float y, float z) {
 	return  (x >= this->x && x <= this->x + width) &&
-			(y >= this->y && y <= this->y + height) &&
-			(z >= this->z && z <= this->z + depth)
+		(y >= this->y && y <= this->y + height) &&
+		(z >= this->z && z <= this->z + depth);
 }
 
-void Region::inside(point p) {
+bool Region::inside(point p) {
 	return  (p.x >= x && p.x <= x + width) &&
-			(p.y >= y && p.y <= y + height) &&
-			(p.z >= z && p.z <= z + depth)
+		(p.y >= y && p.y <= y + height) &&
+		(p.z >= z && p.z <= z + depth);
 }
 
 point Region::getMidPoint() {

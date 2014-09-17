@@ -5,10 +5,13 @@ OctTree::OctTree() {
 	root = std::make_shared<OctNode>();
 }
 
-void OctTree::insert(SceneNode n) {
+void OctTree::insert(std::shared_ptr<SceneNode> n) {
 	root->insert(n);
 }
 
 int OctTree::getSize() {
 	return size;
+}
+
+void OctTree::getNodes(std::vector<SceneNode>& storage) {
 }

@@ -8,7 +8,7 @@ struct point {
 };
 
 class Region {
-	public::
+	public:
 		Region();
 		Region(float x, float y, float z, float width, float height, float depth);
 		//
@@ -20,7 +20,7 @@ class Region {
 		float depth;
 		//
 		std::vector<Region> split();
-		void inside(float x, float y, float z);
-		void inside(point p);
+		bool inside(float x, float y, float z);
+		bool inside(point p);
 		point getMidPoint();
 };

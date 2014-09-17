@@ -2,18 +2,18 @@
 
 SceneManager::SceneManager() {}
 
-std::shared_prt<SceneNode> createSceneNode() {
-	std::shared_prt<SceneNode> n = std::make_shared<SceneNode>();
+std::shared_ptr<SceneNode> SceneManager::createSceneNode() {
+	std::shared_ptr<SceneNode> n = std::make_shared<SceneNode>();
 
 	//TODO init node
 
-	tree->insert(n);
+	tree.insert(n);
 	return n;
 }
 
 void SceneManager::drawAll() {
-	std::vector<Node> v;
-	tree->getNodes(v);
+	std::vector<SceneNode> v;
+	tree.getNodes(v);
 
 	for (int i = 0; i < v.size(); i++)
 	{
@@ -22,8 +22,8 @@ void SceneManager::drawAll() {
 }
 
 void SceneManager::draw() {
-	std::vector<Node> v;
-	tree->getNodes(v);
+	std::vector<SceneNode> v;
+	tree.getNodes(v);
 
 	for (int i = 0; i < v.size(); i++)
 	{
@@ -34,6 +34,7 @@ void SceneManager::draw() {
 void SceneManager::drawNode(SceneNode n) {
 	Mesh m = n.getMesh();
 
+	/*
 	glBegin(GL_POLYGON);
 		for (int i = 0; i < n.getVertexQty(); i++)
 		{
@@ -41,4 +42,5 @@ void SceneManager::drawNode(SceneNode n) {
 			glVertex3f(v.x, v.y, v.z));
 		}
 	glEnd();
+	*/
 }

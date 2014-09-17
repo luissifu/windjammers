@@ -1,12 +1,14 @@
 #pragma once
-#include "OctTree.h"
+#include "../Data/OctTree.h"
 #include "SceneNode.h"
+#include <memory>
 
 class SceneManager {
 	public:
 		SceneManager();
-		std::shared_prt<SceneNode> createSceneNode();
+		std::shared_ptr<SceneNode> createSceneNode();
 		void drawAll();
+		void draw();
 	private:
 		OctTree tree;
 		//
