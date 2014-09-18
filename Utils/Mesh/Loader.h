@@ -12,7 +12,7 @@
 //const int max_polygons = 8000;
 
 enum Model3DSChunks {
-	M3DS_UNKNOWN =					0x0000,
+	M3DS_UNUSED =					0x0000,
 	M3DS_MAIN_CHUNK =				0x4D4D,
 	M3DS_EDITOR_CHUNK =				0x3D3D,
 	M3DS_OBJECT_BLOCK =				0x4000,
