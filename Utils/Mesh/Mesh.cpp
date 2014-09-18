@@ -56,3 +56,15 @@ void Mesh::addVertex(vertex v) {
 void Mesh::addCoord(coord c) {
 	coord_list.push_back(c);
 }
+
+polygon Mesh::getPolygon(int index) {
+	return polygon_list[index];
+}
+
+vertex Mesh::getVertex(int index) {
+	return vertex_list[index];
+}
+
+coord Mesh::getCoord(int index) {
+	return coord_list[index];
+}

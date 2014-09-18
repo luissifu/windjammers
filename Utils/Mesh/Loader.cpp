@@ -26,8 +26,8 @@ Mesh Loader::getMesh(std::string filename) {
 
 bool Loader::loadMesh(Mesh& mesh, std::string filename) {
 	int i;
-	std::ifstream file;
-	file.open(filename.c_str(), std::ios::binary);
+
+	FILE* file;
 
 	unsigned short chunkId;
 	unsigned int chunkLength;
@@ -35,15 +35,24 @@ bool Loader::loadMesh(Mesh& mesh, std::string filename) {
 	unsigned short qty;
 	unsigned short faceFlags;
 
-	if (!file.is_open())
+	file = fopen(filename.c_str(), "rb");
+
+	if (file == NULL)
+	{
+		printf("failed to open file");
 		return false;
+	}
 
 	mesh.setFileName(filename);
 
-	while (!file.eof())
+	fseek(file, 0, SEEK_END);
+	int end = ftell(file);
+	fseek(file, 0, SEEK_SET);
+
+	while (ftell(file) < end)
 	{
-		file >> chunkId;
-		file >> chunkLength;
+		fread(&chunkId, 2, 1, file);
+		fread(&chunkLength, 4, 1, file);
 
 		switch(chunkId)
 		{
@@ -60,7 +69,7 @@ bool Loader::loadMesh(Mesh& mesh, std::string filename) {
 
 				do
 				{
-					file >> chr;
+					fread(&chr, 1, 1, file);
 					name[i] = chr;
 					i++;
 				}
@@ -75,16 +84,16 @@ bool Loader::loadMesh(Mesh& mesh, std::string filename) {
 
 			case M3DS_VERTICES_LIST:
 			{
-				file >> qty;
+				fread (&qty, sizeof (unsigned short), 1, file);
 				mesh.setVerticesQty(qty);
 
 				for (i = 0; i < qty; i++)
 				{
 					vertex v;
 					
-					file >> v.x;
-					file >> v.y;
-					file >> v.z;
+					fread(&v.x, sizeof(float), 1, file);
+					fread(&v.y, sizeof(float), 1, file);
+					fread(&v.z, sizeof(float), 1, file);
 
 					mesh.addVertex(v);
 				}
@@ -94,17 +103,17 @@ bool Loader::loadMesh(Mesh& mesh, std::string filename) {
 
 			case M3DS_FACES_DESCRIPTION:
 			{
-				file >> qty;
+				fread(&qty, sizeof (unsigned short), 1, file);
 				mesh.setPolygonsQty(qty);
 				
 				for (i = 0; i < qty; i++)
 				{
 					polygon p;
 					
-					file >> p.a;
-					file >> p.b;
-					file >> p.c;
-					file >> faceFlags;
+					fread(&p.a, sizeof (unsigned short), 1, file);
+					fread(&p.b, sizeof (unsigned short), 1, file);
+					fread(&p.c, sizeof (unsigned short), 1, file);
+					fread(&faceFlags, sizeof (unsigned short), 1, file);
 
 					mesh.addPolygon(p);
 				}
@@ -114,15 +123,15 @@ bool Loader::loadMesh(Mesh& mesh, std::string filename) {
 
 			case M3DS_MAPPING_COORDINATES_LIST:
 			{
-				file >> qty;
+				fread(&qty, sizeof (unsigned short), 1, file);
 				mesh.setCoordsQty(qty);
 
 				for (i = 0; i < qty; i++)
 				{
 					coord c;
 					
-					file >> c.u;
-					file >> c.v;
+					fread(&c.u, sizeof (float), 1, file);
+					fread(&c.v, sizeof (float), 1, file);
 
 					mesh.addCoord(c);
 				}
@@ -130,11 +139,10 @@ bool Loader::loadMesh(Mesh& mesh, std::string filename) {
 			break;
 
 			default:
-				file.ignore(chunkLength-6);
-
+				fseek(file, chunkLength - 6, SEEK_CUR);
 		}
 	}
 
-	file.close();
+	fclose(file);
 	return true;
 }

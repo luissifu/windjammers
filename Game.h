@@ -16,6 +16,7 @@ class Game {
 		bool init();
 		bool initSDL();
 		bool initGL();
+		bool initTest();
 		//
 		void event(SDL_Event* e);
 		void update();
@@ -26,5 +27,9 @@ class Game {
 		SDL_Event ev;
 		SDL_GLContext context;
 		SceneManager scene;
+		//
+		Loader loader;
+		Mesh mesh;
+		//
 		bool running;
 };

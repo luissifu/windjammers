@@ -1,7 +1,7 @@
 #include "Game.h"
 
 bool Game::init() {
-	return initSDL() && initGL();
+	return initSDL() && initGL() && initTest();
 }
 
 bool Game::initSDL() {
@@ -62,6 +62,20 @@ bool Game::initGL() {
 	{ 
 		return false;
 	}
+
+	return true;
+}
+
+bool Game::initTest() {
+	mesh = loader.getMesh("disk.3ds");
+	
+	if (mesh.getName().empty())
+	{
+		printf("Mesh not found");
+		return false;
+	}
+
+	printf("Mesh data = %s", mesh.getName().c_str());
 
 	return true;
 }
