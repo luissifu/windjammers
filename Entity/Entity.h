@@ -4,7 +4,7 @@
 #include "../Component/Component.h"
 #include "../Constants.h"
 
-const enum EntityType {
+enum EntityType {
 	ENTITY_TYPE_NONE = 0,
 	ENTITY_TYPE_GUI_ITEM,
 	ENTITY_TYPE_PLAYER,

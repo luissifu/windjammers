@@ -2,7 +2,7 @@
 #include <memory>
 #include "../Entity/Entity.h"
 
-const enum SystemType {
+enum SystemType {
 	SYSTEM_TYPE_NONE = 0,
 	SYSTEM_TYPE_INPUT,
 	SYSTEM_TYPE_ANIMATION,

@@ -1,7 +1,14 @@
 #pragma once
+
+#ifdef _MSC_VER
 #include <SDL.h>
 #include <SDL_opengl.h>
-#include <gl/glu.h>
+#else
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_opengl.h>
+#endif
+
+#include <GL/glu.h>
 #include <string>
 #include "Utils/Scene/SceneManager.h"
 #include "Constants.h"

@@ -1,6 +1,6 @@
 #pragma once
 
-const enum ComponentType {
+enum ComponentType {
 	COMPONENT_TYPE_NONE = 0,
 	COMPONENT_TYPE_INPUT,
 	COMPONENT_TYPE_ANIMATION,
