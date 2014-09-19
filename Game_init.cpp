@@ -49,7 +49,7 @@ bool Game::initGL() {
 	} 
 	
 	glMatrixMode( GL_MODELVIEW ); 
-	glLoadIdentity(); 
+	glLoadIdentity();
 	error = glGetError(); 
 	if( error != GL_NO_ERROR ) 
 	{ 
@@ -62,6 +62,12 @@ bool Game::initGL() {
 	{ 
 		return false;
 	}
+
+	double hw = 12.8 / 2.0f;
+	double hh = 7.2 / 2.0f;
+	double hd = DEFAULT_DEPTH / 2.0f;
+
+	glOrtho(-hw, hw, -hh, hh, -hd, hd);
 
 	return true;
 }

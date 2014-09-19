@@ -17,3 +17,4 @@ const float CAMERA_Z = -40.0f;
 
 const unsigned int DEFAULT_WIDTH = 1280;
 const unsigned int DEFAULT_HEIGHT = 720;
+const unsigned int DEFAULT_DEPTH = 5;
