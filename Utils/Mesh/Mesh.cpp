@@ -68,3 +68,7 @@ vertex Mesh::getVertex(int index) {
 coord Mesh::getCoord(int index) {
 	return coord_list[index];
 }
+
+bool Mesh::empty() {
+	return polygons == vertices == coords == 0;
+}

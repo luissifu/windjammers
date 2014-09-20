@@ -68,20 +68,16 @@ bool Game::initGL() {
 	double hd = DEFAULT_DEPTH / 2.0f;
 
 	glOrtho(-hw, hw, -hh, hh, -hd, hd);
+	glShadeModel(GL_SMOOTH);
 
 	return true;
 }
 
 bool Game::initTest() {
-	mesh = loader.getMesh("disk.3ds");
+	rotation = 0.0f;
 	
-	if (mesh.getName().empty())
-	{
-		printf("Mesh not found");
-		return false;
-	}
+	std::shared_ptr<SceneNode> node = scene.createSceneNode("disk.3ds", -2, 0, 0);
+	std::shared_ptr<SceneNode> node2 = scene.createSceneNode("disk.3ds", 2, 0, 0);
 
-	printf("Mesh data = %s", mesh.getName().c_str());
-
-	return true;
+	return node != nullptr;
 }

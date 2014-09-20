@@ -41,6 +41,8 @@ class Mesh {
 		polygon getPolygon(int index);
 		vertex getVertex(int index);
 		coord getCoord(int index);
+		//
+		bool empty();
 	private:
 		std::string name;
 		std::string fileName;

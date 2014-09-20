@@ -39,7 +39,7 @@ bool Loader::loadMesh(Mesh& mesh, std::string filename) {
 
 	if (file == NULL)
 	{
-		printf("failed to open file");
+		printf("failed to open file\n");
 		return false;
 	}
 

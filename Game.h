@@ -1,6 +1,6 @@
 #pragma once
 
-#ifdef _MSC_VER
+#ifdef _WIN32
 #include <SDL.h>
 #include <SDL_opengl.h>
 #else
@@ -39,4 +39,5 @@ class Game {
 		Mesh mesh;
 		//
 		bool running;
+		float rotation;
 };

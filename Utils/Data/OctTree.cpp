@@ -13,5 +13,6 @@ int OctTree::getSize() {
 	return size;
 }
 
-void OctTree::getNodes(std::vector<SceneNode>& storage) {
+void OctTree::getNodes(std::vector<std::shared_ptr<SceneNode>>& storage) {
+	root->getNodes(storage);
 }

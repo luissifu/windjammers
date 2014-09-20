@@ -3,20 +3,28 @@
 OctNode::OctNode() {
 	leaf = true;
 	dataNum = 0;
+	for (int i = 0; i < MAX_DATA; i++)
+	{
+		data[i] = nullptr;
+	}
 }
 
 OctNode::OctNode(Region r) {
 	leaf = true;
 	dataNum = 0;
 	region = r;
+	for (int i = 0; i < MAX_DATA; i++)
+	{
+		data[i] = nullptr;
+	}
 }
 
 void OctNode::insert(std::shared_ptr<SceneNode> n) {
-	if (!leaf)
+	if (leaf)
 	{
 		if (dataNum < MAX_DATA)
 		{
-			data[dataNum] = std::make_shared<SceneNode>();
+			data[dataNum] = n;
 			dataNum++;
 		}
 		else
@@ -55,4 +63,24 @@ void OctNode::setRegion(Region r) {
 
 bool OctNode::inside(int x, int y, int z) {
 	return region.inside(x,y,z);
+}
+
+void OctNode::getNodes(std::vector<std::shared_ptr<SceneNode>>& storage) {
+	if (leaf)
+	{
+		for (int i = 0; i < MAX_DATA; i++)
+		{
+			if (data[i] != nullptr)
+			{
+				storage.push_back(data[i]);
+			}
+		}
+	}
+	else
+	{
+		for (int i = 0; i < MAX_CHILDREN; i++)
+		{
+			children[i]->getNodes(storage);
+		}
+	}
 }
