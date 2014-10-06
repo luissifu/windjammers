@@ -11,7 +11,7 @@ COMP_FLAG = -w -std=c++11
 LINK_FLAG = -lSDL2 -lGLU -lGL
 
 #Name
-NAME = windjammers
+NAME = build/windjammers
 
 #Target
 all : $(OBJS) 
