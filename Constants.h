@@ -11,10 +11,12 @@ const float WORLD_X = 0.0f;
 const float WORLD_Y = 0.0f;
 const float WORLD_Z = 0.0f;
 
-const float CAMERA_X =  0.0f;
-const float CAMERA_Y =  0.0f;
-const float CAMERA_Z = -40.0f;
-
 const unsigned int DEFAULT_WIDTH = 1280;
 const unsigned int DEFAULT_HEIGHT = 720;
-const unsigned int DEFAULT_DEPTH = 5;
+const unsigned int DEFAULT_DEPTH = 10;
+
+const float CAMERA_X = 0.0f;
+const float CAMERA_Y = 0.0f;
+const float CAMERA_Z = DEFAULT_DEPTH;
+
+const float DEFAULT_Z = 3.5;

@@ -45,14 +45,33 @@ bool Game::initGL() {
 	error = glGetError(); 
 	if( error != GL_NO_ERROR ) 
 	{ 
+		printf("Error setting projection: %s", gluErrorString(error));
 		return false;
 	} 
 	
+	double hw = 12.8 / 2.0f;
+	double hh = 7.2 / 2.0f;
+	double hd = DEFAULT_DEPTH / 2.0f;
+
+	//glOrtho(-hw, hw, -hh, hh, -hd, hd);
+	//glFrustum(-hw, hw, -hh, hh, 0.1, DEFAULT_DEPTH);
+
+	gluPerspective(70.0f, hw / hh, -hd, hd);
+	gluLookAt(CAMERA_X, CAMERA_Y, CAMERA_Z, 0, 0, 0, 0, 1, 0);
+
+	error = glGetError();
+	if (error != GL_NO_ERROR)
+	{
+		printf("Error setting camera: %s", gluErrorString(error));
+		return false;
+	}
+
 	glMatrixMode( GL_MODELVIEW ); 
 	glLoadIdentity();
 	error = glGetError(); 
 	if( error != GL_NO_ERROR ) 
 	{ 
+		printf("Error setting modelview: %s", gluErrorString(error));
 		return false;
 	}
 
@@ -60,15 +79,9 @@ bool Game::initGL() {
 	error = glGetError(); 
 	if( error != GL_NO_ERROR ) 
 	{ 
+		printf("Error on clear color: %s", gluErrorString(error));
 		return false;
 	}
-
-	double hw = 12.8 / 2.0f;
-	double hh = 7.2 / 2.0f;
-	double hd = DEFAULT_DEPTH / 2.0f;
-
-	glOrtho(-hw, hw, -hh, hh, -hd, hd);
-	glShadeModel(GL_SMOOTH);
 
 	return true;
 }
@@ -76,8 +89,7 @@ bool Game::initGL() {
 bool Game::initTest() {
 	rotation = 0.0f;
 	
-	std::shared_ptr<SceneNode> node = scene.createSceneNode("disk.3ds", -2, 0, 0);
-	std::shared_ptr<SceneNode> node2 = scene.createSceneNode("disk.3ds", 2, 0, 0);
+	std::shared_ptr<SceneNode> node = scene.createSceneNode("disk.3ds", 0, 0, 0);
 
 	return node != nullptr;
 }

@@ -57,7 +57,9 @@ void SceneManager::drawNode(std::shared_ptr<SceneNode> n) {
 	
 	glPushMatrix();
 	glTranslatef(n->getX(), n->getY(), n->getZ());
-	glRotatef(rotation, 0.0, 1.0, 0.0);
+	glRotatef(-90.0f, 1.0, 0.0, 0.0);
+	glRotatef(rotation, 0.0, 0.0, 1.0);
+	//glColor3f(1.0, 0.0, 0.0);
 	glBegin(GL_TRIANGLES);
 	for (int i = 0; i < mesh.getPolygonsQty(); i++)
 	{
