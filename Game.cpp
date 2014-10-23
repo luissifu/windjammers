@@ -1,10 +1,16 @@
 #include "Game.h"
 
+#include <iostream>
+
 Game::Game() {}
 
 int Game::execute() {
 	if (!init())
+	{
+		int x;
+		std::cin >> x;
 		return -1;
+	}
 
 	//TODO
 	running = true;
