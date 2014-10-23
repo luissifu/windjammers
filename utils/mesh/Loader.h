@@ -6,7 +6,7 @@
 #include <string>
 #include <vector>
 
-#include "../Mesh/Mesh.h"
+#include "Mesh.h"
 
 //const int max_vertices = 8000;
 //const int max_polygons = 8000;

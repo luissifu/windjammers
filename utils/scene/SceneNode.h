@@ -1,6 +1,6 @@
 #pragma once
-#include "../Mesh/Loader.h"
-#include "../Mesh/Mesh.h"
+#include "../mesh/Loader.h"
+#include "../mesh/Mesh.h"
 
 class SceneNode {
 	public:

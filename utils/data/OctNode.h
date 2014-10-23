@@ -1,5 +1,5 @@
 #pragma once
-#include "../Scene/SceneNode.h"
+#include "../scene/SceneNode.h"
 #include "Region.h"
 #include <memory>
 

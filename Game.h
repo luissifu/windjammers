@@ -10,7 +10,7 @@
 
 #include <GL/glu.h>
 #include <string>
-#include "Utils/Scene/SceneManager.h"
+#include "utils/scene/SceneManager.h"
 #include "Constants.h"
 
 class Game {

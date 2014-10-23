@@ -1,5 +1,5 @@
 #Source files
-OBJS = *.cpp */*.cpp */*/*.cpp
+OBJS = $(wildcard *.cpp) $(wildcard */*.cpp) $(wildcard */*/*.cpp)
 
 #Compiler
 CC = g++
