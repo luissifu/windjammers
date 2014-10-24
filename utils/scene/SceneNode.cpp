@@ -3,16 +3,8 @@
 SceneNode::SceneNode() {
 	visible = collidable = false;
 	x = y = z = 0.0f;
+	type = SCENE_NODE;
 }
-
-void SceneNode::addMesh(Mesh m) {
-	mesh = m;
-}
-
-Mesh SceneNode::getMesh() {
-	return mesh;
-}
-
 
 void SceneNode::setPosition(int x, int y, int z) {
 	this->x = x;
@@ -58,4 +50,8 @@ void SceneNode::setVisible(bool v) {
 
 void SceneNode::setCollidable(bool c) {
 	collidable = c;
+}
+
+sceneNodeType SceneNode::getType() {
+	return type;
 }

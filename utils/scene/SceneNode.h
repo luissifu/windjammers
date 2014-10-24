@@ -1,12 +1,15 @@
 #pragma once
-#include "../mesh/Loader.h"
-#include "../mesh/Mesh.h"
+
+enum sceneNodeType {
+	SCENE_NODE,
+	SCENE_NODE_FLAT,
+	SCENE_NODE_STATIC,
+	SCENE_NODE_ANIMATED
+};
 
 class SceneNode {
 	public:
 		SceneNode();
-		void addMesh(Mesh m);
-		Mesh getMesh();
 		void setPosition(int x, int y, int z);
 		void setX(float x);
 		void setY(float y);
@@ -18,10 +21,12 @@ class SceneNode {
 		bool isCollidable();
 		void setVisible(bool v);
 		void setCollidable(bool c);
+		sceneNodeType getType();
+	protected:
+		sceneNodeType type;
 	private:
 		bool visible;
 		bool collidable;
-		Mesh mesh;
 		int x;
 		int y;
 		int z;

@@ -22,7 +22,7 @@ bool Game::initSDL() {
 		SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN
 	);
 
-	if (window == NULL) 
+	if (window == NULL)
 	{
 		return false;
 	}
@@ -38,17 +38,17 @@ bool Game::initSDL() {
 }
 
 bool Game::initGL() {
-	GLenum error = GL_NO_ERROR; 
-	
-	glMatrixMode( GL_PROJECTION ); 
-	glLoadIdentity(); 
-	error = glGetError(); 
-	if( error != GL_NO_ERROR ) 
-	{ 
+	GLenum error = GL_NO_ERROR;
+
+	glMatrixMode( GL_PROJECTION );
+	glLoadIdentity();
+	error = glGetError();
+	if( error != GL_NO_ERROR )
+	{
 		printf("Error setting projection: %s", gluErrorString(error));
 		return false;
-	} 
-	
+	}
+
 	double hw = 12.8 / 2.0f;
 	double hh = 7.2 / 2.0f;
 	double hd = DEFAULT_DEPTH / 2.0f;
@@ -66,19 +66,19 @@ bool Game::initGL() {
 		return false;
 	}
 
-	glMatrixMode( GL_MODELVIEW ); 
+	glMatrixMode( GL_MODELVIEW );
 	glLoadIdentity();
-	error = glGetError(); 
-	if( error != GL_NO_ERROR ) 
-	{ 
+	error = glGetError();
+	if( error != GL_NO_ERROR )
+	{
 		printf("Error setting modelview: %s", gluErrorString(error));
 		return false;
 	}
 
-	glClearColor( 0.f, 0.f, 0.f, 1.f );  
-	error = glGetError(); 
-	if( error != GL_NO_ERROR ) 
-	{ 
+	glClearColor( 0.f, 0.f, 0.f, 1.f );
+	error = glGetError();
+	if( error != GL_NO_ERROR )
+	{
 		printf("Error on clear color: %s", gluErrorString(error));
 		return false;
 	}
@@ -88,8 +88,8 @@ bool Game::initGL() {
 
 bool Game::initTest() {
 	rotation = 0.0f;
-	
-	std::shared_ptr<SceneNode> node = scene.createSceneNode("disk.3ds", 0, 0, 0);
+
+	std::shared_ptr<SceneNode> node = scene.createStaticNode("disk.3ds", 0, 0, 0);
 
 	return node != nullptr;
 }

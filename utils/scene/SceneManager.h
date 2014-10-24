@@ -3,6 +3,9 @@
 #include "../data/OctTree.h"
 #include "../mesh/Loader.h"
 #include "SceneNode.h"
+#include "StaticNode.h"
+#include "FlatNode.h"
+#include "AnimatedNode.h"
 #include <memory>
 
 #ifdef _WIN32
@@ -16,7 +19,7 @@
 class SceneManager {
 	public:
 		SceneManager();
-		std::shared_ptr<SceneNode> createSceneNode(std::string filename, float x, float y, float z);
+		std::shared_ptr<SceneNode> createStaticNode(std::string filename, float x, float y, float z);
 		void drawAll();
 		void draw();
 		void setRotation(float r);
@@ -24,6 +27,6 @@ class SceneManager {
 		OctTree tree;
 		Loader loader;
 		//
-		void drawNode(std::shared_ptr<SceneNode> n);
+		void drawStaticNode(std::shared_ptr<StaticNode> n);
 		float rotation;
 };

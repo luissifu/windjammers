@@ -10,7 +10,7 @@ void SceneManager::setRotation(float r) {
 	rotation = r;
 }
 
-std::shared_ptr<SceneNode> SceneManager::createSceneNode(std::string filename, float x, float y, float z) {
+std::shared_ptr<SceneNode> SceneManager::createStaticNode(std::string filename, float x, float y, float z) {
 	Mesh m = loader.getMesh(filename);
 
 	if (m.empty())
@@ -19,7 +19,7 @@ std::shared_ptr<SceneNode> SceneManager::createSceneNode(std::string filename, f
 		return nullptr;
 	}
 
-	std::shared_ptr<SceneNode> n = std::make_shared<SceneNode>();
+	std::shared_ptr<StaticNode> n = std::make_shared<StaticNode>();
 
 	n->addMesh(m);
 	n->setPosition(x, y, z);
@@ -36,25 +36,39 @@ void SceneManager::drawAll() {
 
 	for (int i = 0; i < v.size(); i++)
 	{
-		drawNode(v[i]);
+		std::shared_ptr<SceneNode> node = v[i];
+
+		switch(node->getType())
+		{
+			case SCENE_NODE_STATIC:
+				drawStaticNode(std::dynamic_pointer_cast<StaticNode*>(node.get()));
+			break;
+		}
 	}
 }
 
 void SceneManager::draw() {
 	glClear(GL_COLOR_BUFFER_BIT);
-	
+
 	std::vector<std::shared_ptr<SceneNode>> v;
 	tree.getNodes(v);
 
 	for (int i = 0; i < v.size(); i++)
 	{
-		drawNode(v[i]);
+		std::shared_ptr<SceneNode> node = v[i];
+
+		switch(node->getType())
+		{
+			case SCENE_NODE_STATIC:
+				drawStaticNode(std::dynamic_pointer_cast<StaticNode*>(node.get()));
+			break;
+		}
 	}
 }
 
-void SceneManager::drawNode(std::shared_ptr<SceneNode> n) {
+void SceneManager::drawStaticNode(std::shared_ptr<StaticNode> n) {
 	Mesh mesh = n->getMesh();
-	
+
 	glPushMatrix();
 	glTranslatef(n->getX(), n->getY(), n->getZ());
 	glRotatef(-90.0f, 1.0, 0.0, 0.0);
@@ -72,6 +86,6 @@ void SceneManager::drawNode(std::shared_ptr<SceneNode> n) {
 		glVertex3f(b.x, b.y, b.z);
 		glVertex3f(c.x, c.y, c.z);
 	}
-	glEnd(); 
+	glEnd();
 	glPopMatrix();
 }
