@@ -5,6 +5,7 @@
 class AnimatedNode : public SceneNode {
 	public:
 		AnimatedNode();
+		~AnimatedNode();
 		void addMesh(AnimatedMesh m);
 		AnimatedMesh getMesh();
 	private:

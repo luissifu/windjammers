@@ -41,7 +41,7 @@ void SceneManager::drawAll() {
 		switch(node->getType())
 		{
 			case SCENE_NODE_STATIC:
-				drawStaticNode(std::dynamic_pointer_cast<StaticNode*>(node.get()));
+				drawStaticNode(std::dynamic_pointer_cast<StaticNode>(node));
 			break;
 		}
 	}
@@ -60,7 +60,7 @@ void SceneManager::draw() {
 		switch(node->getType())
 		{
 			case SCENE_NODE_STATIC:
-				drawStaticNode(std::dynamic_pointer_cast<StaticNode*>(node.get()));
+				drawStaticNode(std::dynamic_pointer_cast<StaticNode>(node));
 			break;
 		}
 	}

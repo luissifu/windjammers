@@ -4,6 +4,8 @@ StaticNode::StaticNode() {
 	type = SCENE_NODE_STATIC;
 }
 
+StaticNode::~StaticNode() {}
+
 void StaticNode::addMesh(Mesh m) {
 	mesh = m;
 }

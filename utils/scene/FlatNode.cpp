@@ -4,6 +4,8 @@ FlatNode::FlatNode() {
 	type = SCENE_NODE_FLAT;
 }
 
+FlatNode::~FlatNode() {}
+
 void FlatNode::setTexture(Texture t) {
 	texture = t;
 }

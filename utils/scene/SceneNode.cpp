@@ -6,6 +6,8 @@ SceneNode::SceneNode() {
 	type = SCENE_NODE;
 }
 
+SceneNode::~SceneNode() {}
+
 void SceneNode::setPosition(int x, int y, int z) {
 	this->x = x;
 	this->y = y;

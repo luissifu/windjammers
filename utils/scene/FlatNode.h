@@ -5,6 +5,7 @@
 class FlatNode : public SceneNode {
 	public:
 		FlatNode();
+		~FlatNode();
 		void setTexture(Texture t);
 		Texture getTexture();
 		void setSize(int w, int h);

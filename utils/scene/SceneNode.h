@@ -10,6 +10,7 @@ enum sceneNodeType {
 class SceneNode {
 	public:
 		SceneNode();
+		virtual ~SceneNode();
 		void setPosition(int x, int y, int z);
 		void setX(float x);
 		void setY(float y);
