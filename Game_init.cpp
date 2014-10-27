@@ -42,6 +42,7 @@ bool Game::initGL() {
 
 	glMatrixMode( GL_PROJECTION );
 	glLoadIdentity();
+	
 	error = glGetError();
 	if( error != GL_NO_ERROR )
 	{
@@ -53,12 +54,8 @@ bool Game::initGL() {
 	double hh = 7.2 / 2.0f;
 	double hd = DEFAULT_DEPTH / 2.0f;
 
-	//glOrtho(-hw, hw, -hh, hh, -hd, hd);
-	//glFrustum(-hw, hw, -hh, hh, 0.1, DEFAULT_DEPTH);
-
-	gluPerspective(70.0f, hw / hh, -hd, hd);
-	gluLookAt(CAMERA_X, CAMERA_Y, CAMERA_Z, 0, 0, 0, 0, 1, 0);
-
+	glOrtho(-hw, hw, -hh, hh, -hd, hd);
+	
 	error = glGetError();
 	if (error != GL_NO_ERROR)
 	{
@@ -68,6 +65,9 @@ bool Game::initGL() {
 
 	glMatrixMode( GL_MODELVIEW );
 	glLoadIdentity();
+	glRotatef(35.264f, 1.0f, 0.0f, 0.0f);
+	glRotatef(-45.0f, 0.0f, 1.0f, 0.0f);
+	
 	error = glGetError();
 	if( error != GL_NO_ERROR )
 	{
@@ -76,6 +76,7 @@ bool Game::initGL() {
 	}
 
 	glClearColor( 0.f, 0.f, 0.f, 1.f );
+	
 	error = glGetError();
 	if( error != GL_NO_ERROR )
 	{
