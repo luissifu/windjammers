@@ -50,8 +50,8 @@ bool Game::initGL() {
 		return false;
 	}
 
-	double hw = 12.8 / 2.0f;
-	double hh = 7.2 / 2.0f;
+	double hw = DEFAULT_WIDTH / GL_HALF_SCALE;
+	double hh = DEFAULT_HEIGHT / GL_HALF_SCALE;
 	double hd = DEFAULT_DEPTH / 2.0f;
 
 	glOrtho(-hw, hw, -hh, hh, -hd, hd);
@@ -90,7 +90,9 @@ bool Game::initGL() {
 bool Game::initTest() {
 	rotation = 0.0f;
 
-	std::shared_ptr<SceneNode> node = scene.createStaticNode("disk.3ds", 0, 0, 0);
+	std::shared_ptr<SceneNode> node = scene.createStaticNode("tank2.3ds", 0, 0, 0);
+
+	//std::shared_ptr<SceneNode> node2 = scene.createFlatNode("test", 0, 0, 12.8, 7.2);
 
 	return node != nullptr;
 }

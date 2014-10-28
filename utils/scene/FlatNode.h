@@ -8,11 +8,11 @@ class FlatNode : public SceneNode {
 		~FlatNode();
 		void setTexture(Texture t);
 		Texture getTexture();
-		void setSize(int w, int h);
-		int getWidth();
-		int getHeight();
+		void setSize(float w, float h);
+		float getWidth();
+		float getHeight();
 	private:
 		Texture texture;
-		int width;
-		int height;
+		float width;
+		float height;
 };

@@ -28,6 +28,16 @@ std::shared_ptr<SceneNode> SceneManager::createStaticNode(std::string filename, 
 	return n;
 }
 
+std::shared_ptr<SceneNode> SceneManager::createFlatNode(std::string filename, float x, float y, float w, float h) {
+	std::shared_ptr<FlatNode> n = std::make_shared<FlatNode>();
+
+	n->setPosition(x, y, 0);
+	n->setSize(w, h);
+
+	tree.insert(n);
+	return n;
+}
+
 void SceneManager::drawAll() {
 	glClear(GL_COLOR_BUFFER_BIT);
 
@@ -42,7 +52,11 @@ void SceneManager::drawAll() {
 		{
 			case SCENE_NODE_STATIC:
 				drawStaticNode(std::dynamic_pointer_cast<StaticNode>(node));
-			break;
+				break;
+
+			case SCENE_NODE_FLAT:
+				drawFlatNode(std::dynamic_pointer_cast<FlatNode>(node));
+				break;
 		}
 	}
 }
@@ -61,7 +75,11 @@ void SceneManager::draw() {
 		{
 			case SCENE_NODE_STATIC:
 				drawStaticNode(std::dynamic_pointer_cast<StaticNode>(node));
-			break;
+				break;
+
+			case SCENE_NODE_FLAT:
+				drawFlatNode(std::dynamic_pointer_cast<FlatNode>(node));
+				break;
 		}
 	}
 }
@@ -73,7 +91,8 @@ void SceneManager::drawStaticNode(std::shared_ptr<StaticNode> n) {
 	glTranslatef(n->getX(), n->getY(), n->getZ());
 	glRotatef(-90.0f, 1.0, 0.0, 0.0);
 	glRotatef(rotation, 0.0, 0.0, 1.0);
-	//glColor3f(1.0, 0.0, 0.0);
+	glColor3f(0.0, 0.0, 1.0);
+	
 	glBegin(GL_TRIANGLES);
 	for (int i = 0; i < mesh.getPolygonsQty(); i++)
 	{
@@ -87,5 +106,30 @@ void SceneManager::drawStaticNode(std::shared_ptr<StaticNode> n) {
 		glVertex3f(c.x, c.y, c.z);
 	}
 	glEnd();
+	
+	glPopMatrix();
+}
+
+void SceneManager::drawFlatNode(std::shared_ptr<FlatNode> n) {
+	glPushMatrix();
+	
+	//unrotate
+	glRotatef(45.0f, 0.0f, 1.0f, 0.0f);
+	glRotatef(-35.264f, 1.0f, 0.0f, 0.0f);
+
+	glTranslatef(n->getX() - DEFAULT_WIDTH / GL_HALF_SCALE, n->getY() - DEFAULT_HEIGHT / GL_HALF_SCALE, n->getZ());
+
+	glBegin(GL_TRIANGLES);
+		glColor3f(1, 0, 0);
+		glVertex3f(0, 0, 0);
+		glVertex3f(0, n->getHeight(), 0);
+		glVertex3f(n->getWidth(), n->getHeight(), 0);
+
+		glColor3f(0, 1, 0);
+		glVertex3f(0, 0, 0);
+		glVertex3f(n->getWidth(), 0, 0);
+		glVertex3f(n->getWidth(), n->getHeight(), 0);
+	glEnd();
+	
 	glPopMatrix();
 }

@@ -2,6 +2,7 @@
 
 FlatNode::FlatNode() {
 	type = SCENE_NODE_FLAT;
+	width = height = 1;
 }
 
 FlatNode::~FlatNode() {}
@@ -14,15 +15,15 @@ Texture FlatNode::getTexture() {
 	return texture;
 }
 
-void FlatNode::setSize(int w, int h) {
+void FlatNode::setSize(float w, float h) {
 	width = w;
 	height = h;
 }
 
-int FlatNode::getWidth() {
+float FlatNode::getWidth() {
 	return width;
 }
 
-int FlatNode::getHeight() {
+float FlatNode::getHeight() {
 	return height;
 }

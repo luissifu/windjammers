@@ -70,5 +70,7 @@ coord Mesh::getCoord(int index) {
 }
 
 bool Mesh::empty() {
+	printf("%d,%d,%d\n", polygons, vertices, coords);
+
 	return polygons == vertices == coords == 0;
 }

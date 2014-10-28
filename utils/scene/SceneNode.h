@@ -25,7 +25,6 @@ class SceneNode {
 		sceneNodeType getType();
 	protected:
 		sceneNodeType type;
-	private:
 		bool visible;
 		bool collidable;
 		int x;

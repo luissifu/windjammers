@@ -19,4 +19,7 @@ const float CAMERA_X = 0.0f;
 const float CAMERA_Y = 0.0f;
 const float CAMERA_Z = DEFAULT_DEPTH;
 
+const float GL_SCALE = 100.0f;
+const float GL_HALF_SCALE = 2 * GL_SCALE;
+
 const float DEFAULT_Z = 3.5;

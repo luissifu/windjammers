@@ -20,6 +20,7 @@ class SceneManager {
 	public:
 		SceneManager();
 		std::shared_ptr<SceneNode> createStaticNode(std::string filename, float x, float y, float z);
+		std::shared_ptr<SceneNode> createFlatNode(std::string filename, float x, float y, float w, float h);
 		void drawAll();
 		void draw();
 		void setRotation(float r);
@@ -28,5 +29,6 @@ class SceneManager {
 		Loader loader;
 		//
 		void drawStaticNode(std::shared_ptr<StaticNode> n);
+		void drawFlatNode(std::shared_ptr<FlatNode> n);
 		float rotation;
 };
