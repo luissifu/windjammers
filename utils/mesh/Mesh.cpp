@@ -70,7 +70,11 @@ coord Mesh::getCoord(int index) {
 }
 
 bool Mesh::empty() {
-	printf("%d,%d,%d\n", polygons, vertices, coords);
+	//printf("%d,%d,%d\n", polygons, vertices, coords);
 
-	return polygons == vertices == coords == 0;
+	return polygons == 0 && vertices == 0 && coords == 0;
+}
+
+void Mesh::setTexture(Texture t) {
+	texture = t;
 }

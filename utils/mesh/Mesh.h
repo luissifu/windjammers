@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <vector>
+#include "../texture/Texture.h"
 
 struct polygon {
 	short a;
@@ -29,6 +30,7 @@ class Mesh {
 		int getCoordsQty();
 		//
 		void setFileName(std::string fn);
+		void setTexture(Texture t);
 		void setName(std::string n);
 		void setPolygonsQty(int qty);
 		void setVerticesQty(int qty);
@@ -44,6 +46,7 @@ class Mesh {
 		//
 		bool empty();
 	private:
+		Texture texture;
 		std::string name;
 		std::string fileName;
 		int polygons;

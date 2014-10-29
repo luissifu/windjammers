@@ -11,13 +11,23 @@ void SceneManager::setRotation(float r) {
 }
 
 std::shared_ptr<SceneNode> SceneManager::createStaticNode(std::string filename, float x, float y, float z) {
-	Mesh m = loader.getMesh(filename);
+	Mesh m = loader.getMesh(filename + ".3ds");
 
 	if (m.empty())
 	{
 		printf("file not found\n");
 		return nullptr;
 	}
+
+	Texture t = loader.getTexture(filename + ".png");
+	
+	if (t.empty())
+	{
+		printf("model has no texture");
+		return nullptr;
+	}
+
+	m.setTexture(t);
 
 	std::shared_ptr<StaticNode> n = std::make_shared<StaticNode>();
 
@@ -91,7 +101,8 @@ void SceneManager::drawStaticNode(std::shared_ptr<StaticNode> n) {
 	glTranslatef(n->getX(), n->getY(), n->getZ());
 	glRotatef(-90.0f, 1.0, 0.0, 0.0);
 	glRotatef(rotation, 0.0, 0.0, 1.0);
-	glColor3f(0.0, 0.0, 1.0);
+	glScalef(0.5, 0.5, 0.5);
+	//glColor3f(0.0, 0.0, 1.0);
 	
 	glBegin(GL_TRIANGLES);
 	for (int i = 0; i < mesh.getPolygonsQty(); i++)
@@ -100,9 +111,15 @@ void SceneManager::drawStaticNode(std::shared_ptr<StaticNode> n) {
 		vertex a = mesh.getVertex(p.a);
 		vertex b = mesh.getVertex(p.b);
 		vertex c = mesh.getVertex(p.c);
+		coord aa = mesh.getCoord(p.a);
+		coord bb = mesh.getCoord(p.b);
+		coord cc = mesh.getCoord(p.c);
 
+		glTexCoord2f(aa.u, aa.v);
 		glVertex3f(a.x, a.y, a.z);
+		glTexCoord2f(bb.u, bb.v);
 		glVertex3f(b.x, b.y, b.z);
+		glTexCoord2f(cc.u, cc.v);
 		glVertex3f(c.x, c.y, c.z);
 	}
 	glEnd();

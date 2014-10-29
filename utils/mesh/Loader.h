@@ -7,6 +7,7 @@
 #include <vector>
 
 #include "Mesh.h"
+#include "../texture/Texture.h"
 
 //const int max_vertices = 8000;
 //const int max_polygons = 8000;
@@ -25,8 +26,11 @@ enum Model3DSChunks {
 class Loader {
 	public:
 		Loader();
-		Mesh getMesh(std::string filename);
+		Mesh getMesh(std::string filename);\
+		Texture getTexture(std::string filename);
 	private:
 		bool loadMesh(Mesh& mesh, std::string filename);
+		bool loadTexture(Texture& text, std::string filename);
 		std::vector<Mesh> mesh_list;
+		std::vector<Texture> text_list;
 };

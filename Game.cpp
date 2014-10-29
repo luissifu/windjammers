@@ -44,5 +44,7 @@ int Game::execute() {
 
 void Game::cleanUp() {
 	SDL_DestroyWindow(window);
+
+	IMG_Quit();
 	SDL_Quit();
 }

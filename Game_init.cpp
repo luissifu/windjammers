@@ -34,6 +34,14 @@ bool Game::initSDL() {
 		return false;
 	}
 
+	int imgFlags = IMG_INIT_PNG; 
+	
+	if (!(IMG_Init(imgFlags) & imgFlags)) 
+	{ 
+		printf("SDL_image could not initialize! SDL_image Error: %s\n", IMG_GetError()); 
+		return false; 
+	}
+
 	return true;
 }
 
@@ -76,7 +84,9 @@ bool Game::initGL() {
 	}
 
 	glClearColor( 0.f, 0.f, 0.f, 1.f );
-	
+	glEnable(GL_TEXTURE_2D);
+	glEnable(GL_DEPTH_TEST);
+
 	error = glGetError();
 	if( error != GL_NO_ERROR )
 	{
@@ -90,7 +100,7 @@ bool Game::initGL() {
 bool Game::initTest() {
 	rotation = 0.0f;
 
-	std::shared_ptr<SceneNode> node = scene.createStaticNode("tank2.3ds", 0, 0, 0);
+	std::shared_ptr<SceneNode> node = scene.createStaticNode("tank2", 0, 0, 0);
 
 	//std::shared_ptr<SceneNode> node2 = scene.createFlatNode("test", 0, 0, 12.8, 7.2);
 

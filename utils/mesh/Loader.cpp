@@ -24,6 +24,28 @@ Mesh Loader::getMesh(std::string filename) {
 	}
 }
 
+Texture Loader::getTexture(std::string filename) {
+	for (int i = 0; i < text_list.size(); i++)
+	{
+		if (text_list[i].getName().compare(filename) == 0)
+		{
+			return text_list[i];
+		}
+	}
+
+	Texture new_text;
+
+	if (loadTexture(new_text, filename))
+	{
+		text_list.push_back(new_text);
+		return new_text;
+	}
+	else //panic!
+	{
+		return new_text;
+	}
+}
+
 bool Loader::loadMesh(Mesh& mesh, std::string filename) {
 	int i;
 
@@ -144,5 +166,35 @@ bool Loader::loadMesh(Mesh& mesh, std::string filename) {
 	}
 
 	fclose(file);
+	return true;
+}
+
+
+bool Loader::loadTexture(Texture& text, std::string filename) {
+	GLuint TextureID = 0;
+
+	SDL_Surface* surface = IMG_Load(filename.c_str());
+
+	if (surface == NULL)
+		return false;
+
+	glGenTextures(1, &TextureID);
+	glBindTexture(GL_TEXTURE_2D, TextureID);
+
+	int mode = GL_RGB;
+
+	if (surface->format->BytesPerPixel == 4) 
+	{
+		mode = GL_RGBA;
+	}
+
+	glTexImage2D(GL_TEXTURE_2D, 0, mode, surface->w, surface->h, 0, mode, GL_UNSIGNED_BYTE, surface->pixels);
+
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+	text.setTextureId(TextureID);
+	text.setName(filename);
+
 	return true;
 }

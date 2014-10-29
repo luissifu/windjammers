@@ -1,20 +1,32 @@
 #include "Texture.h"
 
+Texture::Texture() {
+	textureId = -1;
+}
+
 Texture::~Texture() {}
 
-Texture::Texture() {
 
-	/*
-	glTexImage2D(
-		GL_TEXTURE_2D, 
-		0, 
-		GL_RGBA8, 
-		nWidth, 
-		nHeight,
-		0, 
-		GL_BGRA, 
-		GL_UNSIGNED_BYTE, 
-		(void*)bytes
-	);
-	*/
+void Texture::bind() {
+	glBindTexture(GL_TEXTURE_2D, textureId);
+}
+
+void Texture::unbind() {
+	glBindTexture(GL_TEXTURE_2D, NULL);
+}
+
+std::string Texture::getName() {
+	return name;
+}
+
+void Texture::setName(std::string name) {
+	this->name = name;
+}
+
+void Texture::setTextureId(unsigned int id) {
+	textureId = id;
+}
+
+bool Texture::empty() {
+	return textureId == -1;
 }
