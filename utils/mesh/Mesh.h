@@ -43,6 +43,7 @@ class Mesh {
 		polygon getPolygon(int index);
 		vertex getVertex(int index);
 		coord getCoord(int index);
+		Texture getTexture();
 		//
 		bool empty();
 	private:

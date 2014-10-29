@@ -78,3 +78,7 @@ bool Mesh::empty() {
 void Mesh::setTexture(Texture t) {
 	texture = t;
 }
+
+Texture Mesh::getTexture() {
+	return texture;
+}

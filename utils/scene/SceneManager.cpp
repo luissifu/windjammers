@@ -41,16 +41,23 @@ std::shared_ptr<SceneNode> SceneManager::createStaticNode(std::string filename, 
 std::shared_ptr<SceneNode> SceneManager::createFlatNode(std::string filename, float x, float y, float w, float h) {
 	std::shared_ptr<FlatNode> n = std::make_shared<FlatNode>();
 
+	Texture t = loader.getTexture(filename + ".png");
+
+	if (t.empty())
+	{
+		printf("model has no texture");
+		return nullptr;
+	}
+
 	n->setPosition(x, y, 0);
 	n->setSize(w, h);
+	n->setTexture(t);
 
 	tree.insert(n);
 	return n;
 }
 
 void SceneManager::drawAll() {
-	glClear(GL_COLOR_BUFFER_BIT);
-
 	std::vector<std::shared_ptr<SceneNode>> v;
 	tree.getNodes(v);
 
@@ -72,8 +79,6 @@ void SceneManager::drawAll() {
 }
 
 void SceneManager::draw() {
-	glClear(GL_COLOR_BUFFER_BIT);
-
 	std::vector<std::shared_ptr<SceneNode>> v;
 	tree.getNodes(v);
 
@@ -96,6 +101,7 @@ void SceneManager::draw() {
 
 void SceneManager::drawStaticNode(std::shared_ptr<StaticNode> n) {
 	Mesh mesh = n->getMesh();
+	Texture t = mesh.getTexture();
 
 	glPushMatrix();
 	glTranslatef(n->getX(), n->getY(), n->getZ());
@@ -128,14 +134,16 @@ void SceneManager::drawStaticNode(std::shared_ptr<StaticNode> n) {
 }
 
 void SceneManager::drawFlatNode(std::shared_ptr<FlatNode> n) {
-	glPushMatrix();
+	Texture t = n->getTexture();
 	
+	glPushMatrix();
 	//unrotate
 	glRotatef(45.0f, 0.0f, 1.0f, 0.0f);
 	glRotatef(-35.264f, 1.0f, 0.0f, 0.0f);
 
 	glTranslatef(n->getX() - DEFAULT_WIDTH / GL_HALF_SCALE, n->getY() - DEFAULT_HEIGHT / GL_HALF_SCALE, n->getZ());
 
+	t.bind();
 	glBegin(GL_TRIANGLES);
 		glColor3f(1, 0, 0);
 		glVertex3f(0, 0, 0);
@@ -147,6 +155,7 @@ void SceneManager::drawFlatNode(std::shared_ptr<FlatNode> n) {
 		glVertex3f(n->getWidth(), 0, 0);
 		glVertex3f(n->getWidth(), n->getHeight(), 0);
 	glEnd();
-	
+	t.unbind();
+
 	glPopMatrix();
 }

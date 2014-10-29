@@ -1,7 +1,7 @@
 #include "Texture.h"
 
 Texture::Texture() {
-	textureId = -1;
+	textureId = NULL;
 }
 
 Texture::~Texture() {}
@@ -28,5 +28,5 @@ void Texture::setTextureId(unsigned int id) {
 }
 
 bool Texture::empty() {
-	return textureId == -1;
+	return textureId == NULL;
 }
