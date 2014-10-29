@@ -1,6 +1,6 @@
 #pragma once
 #include "SceneNode.h"
-#include "../texture/Texture.h"
+#include "../assets/Texture.h"
 
 class FlatNode : public SceneNode {
 	public:

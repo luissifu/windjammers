@@ -1,6 +1,6 @@
 #pragma once
 #include "SceneNode.h"
-#include "../mesh/AnimatedMesh.h"
+#include "../assets/AnimatedMesh.h"
 
 class AnimatedNode : public SceneNode {
 	public:

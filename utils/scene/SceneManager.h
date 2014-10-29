@@ -1,7 +1,7 @@
 #pragma once
 #include "../../Constants.h"
 #include "../data/OctTree.h"
-#include "../mesh/Loader.h"
+#include "../assets/Loader.h"
 #include "SceneNode.h"
 #include "StaticNode.h"
 #include "FlatNode.h"

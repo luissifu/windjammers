@@ -1,7 +1,7 @@
 #pragma once
 #include <string>
 #include <vector>
-#include "../texture/Texture.h"
+#include "Texture.h"
 
 struct polygon {
 	short a;

@@ -7,7 +7,7 @@
 #include <vector>
 
 #include "Mesh.h"
-#include "../texture/Texture.h"
+#include "Texture.h"
 
 //const int max_vertices = 8000;
 //const int max_polygons = 8000;
