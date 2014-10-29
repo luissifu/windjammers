@@ -20,7 +20,7 @@ std::shared_ptr<SceneNode> SceneManager::createStaticNode(std::string filename, 
 	}
 
 	Texture t = loader.getTexture(filename + ".png");
-	
+
 	if (t.empty())
 	{
 		printf("model has no texture");
@@ -45,7 +45,7 @@ std::shared_ptr<SceneNode> SceneManager::createFlatNode(std::string filename, fl
 
 	if (t.empty())
 	{
-		printf("model has no texture");
+		printf("No texture found");
 		return nullptr;
 	}
 
@@ -109,7 +109,8 @@ void SceneManager::drawStaticNode(std::shared_ptr<StaticNode> n) {
 	glRotatef(rotation, 0.0, 0.0, 1.0);
 	glScalef(0.5, 0.5, 0.5);
 	//glColor3f(0.0, 0.0, 1.0);
-	
+
+	t.bind();
 	glBegin(GL_TRIANGLES);
 	for (int i = 0; i < mesh.getPolygonsQty(); i++)
 	{
@@ -121,21 +122,22 @@ void SceneManager::drawStaticNode(std::shared_ptr<StaticNode> n) {
 		coord bb = mesh.getCoord(p.b);
 		coord cc = mesh.getCoord(p.c);
 
-		glTexCoord2f(aa.u, aa.v);
+		glTexCoord2f(aa.u, 1.0-aa.v);
 		glVertex3f(a.x, a.y, a.z);
-		glTexCoord2f(bb.u, bb.v);
+		glTexCoord2f(bb.u, 1.0-bb.v);
 		glVertex3f(b.x, b.y, b.z);
-		glTexCoord2f(cc.u, cc.v);
+		glTexCoord2f(cc.u, 1.0-cc.v);
 		glVertex3f(c.x, c.y, c.z);
 	}
 	glEnd();
-	
+	t.unbind();
+
 	glPopMatrix();
 }
 
 void SceneManager::drawFlatNode(std::shared_ptr<FlatNode> n) {
 	Texture t = n->getTexture();
-	
+
 	glPushMatrix();
 	//unrotate
 	glRotatef(45.0f, 0.0f, 1.0f, 0.0f);
@@ -145,14 +147,18 @@ void SceneManager::drawFlatNode(std::shared_ptr<FlatNode> n) {
 
 	t.bind();
 	glBegin(GL_TRIANGLES);
-		glColor3f(1, 0, 0);
+		glTexCoord2f(0,1);
 		glVertex3f(0, 0, 0);
+		glTexCoord2f(0,0);
 		glVertex3f(0, n->getHeight(), 0);
+		glTexCoord2f(1,0);
 		glVertex3f(n->getWidth(), n->getHeight(), 0);
 
-		glColor3f(0, 1, 0);
+		glTexCoord2f(0,1);
 		glVertex3f(0, 0, 0);
+		glTexCoord2f(1,1);
 		glVertex3f(n->getWidth(), 0, 0);
+		glTexCoord2f(1,0);
 		glVertex3f(n->getWidth(), n->getHeight(), 0);
 	glEnd();
 	t.unbind();
